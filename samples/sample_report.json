@@ -1,0 +1,683 @@
+{
+  "schema": "cloudguard.scan/v1",
+  "provider": "aws",
+  "account_id": "123456789012",
+  "regions": [
+    "us-east-1"
+  ],
+  "started_at": "2026-07-24T21:18:23.599433+00:00",
+  "finished_at": "2026-07-24T21:18:23.744614+00:00",
+  "summary": {
+    "score": 66,
+    "grade": "D",
+    "total_controls": 35,
+    "passed_controls": 19,
+    "failed_controls": 16,
+    "errored_controls": 0,
+    "failed_by_severity": {
+      "CRITICAL": 3,
+      "HIGH": 5,
+      "MEDIUM": 5,
+      "LOW": 3,
+      "INFORMATIONAL": 0
+    }
+  },
+  "findings": [
+    {
+      "check_id": "CT.1",
+      "title": "CloudTrail logging should be enabled",
+      "service": "cloudtrail",
+      "severity": "HIGH",
+      "status": "FAIL",
+      "resource_id": "NO_CLOUDTRAIL_CONFIGURED",
+      "resource_type": "aws_cloudtrail_trail",
+      "region": "us-east-1",
+      "description": "Without CloudTrail, API activity is not recorded, leaving no audit trail for detection or incident response.",
+      "remediation": "Create a trail and start logging via `aws cloudtrail start-logging`.",
+      "frameworks": {
+        "CIS AWS 3.0": "3.1",
+        "MITRE ATT&CK": "T1562.008",
+        "NIST 800-53": "AU-2"
+      },
+      "evidence": "No CloudTrail trail is configured in this account/region.",
+      "timestamp": "2026-07-24T21:18:23.720131+00:00"
+    },
+    {
+      "check_id": "CT.2",
+      "title": "CloudTrail should be multi-region",
+      "service": "cloudtrail",
+      "severity": "MEDIUM",
+      "status": "FAIL",
+      "resource_id": "NO_CLOUDTRAIL_CONFIGURED",
+      "resource_type": "aws_cloudtrail_trail",
+      "region": "us-east-1",
+      "description": "A multi-region trail captures activity in every region, including ones an attacker might use precisely because they are unmonitored.",
+      "remediation": "Enable IsMultiRegionTrail on the trail.",
+      "frameworks": {
+        "CIS AWS 3.0": "3.1",
+        "NIST 800-53": "AU-2"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720149+00:00"
+    },
+    {
+      "check_id": "CT.3",
+      "title": "CloudTrail log file validation should be enabled",
+      "service": "cloudtrail",
+      "severity": "MEDIUM",
+      "status": "FAIL",
+      "resource_id": "NO_CLOUDTRAIL_CONFIGURED",
+      "resource_type": "aws_cloudtrail_trail",
+      "region": "us-east-1",
+      "description": "Log file validation produces a tamper-evident digest so you can prove logs were not altered or deleted after the fact.",
+      "remediation": "Enable log file validation on the trail (EnableLogFileValidation).",
+      "frameworks": {
+        "CIS AWS 3.0": "3.2",
+        "MITRE ATT&CK": "T1070",
+        "NIST 800-53": "AU-9"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720156+00:00"
+    },
+    {
+      "check_id": "CT.4",
+      "title": "CloudTrail logs should be encrypted with a KMS key",
+      "service": "cloudtrail",
+      "severity": "LOW",
+      "status": "FAIL",
+      "resource_id": "NO_CLOUDTRAIL_CONFIGURED",
+      "resource_type": "aws_cloudtrail_trail",
+      "region": "us-east-1",
+      "description": "Encrypting trail logs with a customer-managed KMS key protects their confidentiality and adds an access-control boundary around them.",
+      "remediation": "Set a KmsKeyId on the trail to enable SSE-KMS on delivered logs.",
+      "frameworks": {
+        "CIS AWS 3.0": "3.5",
+        "NIST 800-53": "SC-28"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720162+00:00"
+    },
+    {
+      "check_id": "EC2.1",
+      "title": "Security groups should not allow ingress from 0.0.0.0/0 to port 22 (SSH)",
+      "service": "ec2",
+      "severity": "CRITICAL",
+      "status": "PASS",
+      "resource_id": "sg-56fd5a53a6275e164",
+      "resource_type": "aws_security_group",
+      "region": "us-east-1",
+      "description": "SSH open to the entire internet exposes hosts to credential brute-force and exploitation of the SSH service.",
+      "remediation": "Restrict port 22 to known admin CIDRs or a bastion/SSM Session Manager; never use 0.0.0.0/0.",
+      "frameworks": {
+        "CIS AWS 3.0": "5.2",
+        "MITRE ATT&CK": "T1110",
+        "NIST 800-53": "AC-4"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720170+00:00"
+    },
+    {
+      "check_id": "EC2.1",
+      "title": "Security groups should not allow ingress from 0.0.0.0/0 to port 22 (SSH)",
+      "service": "ec2",
+      "severity": "CRITICAL",
+      "status": "PASS",
+      "resource_id": "sg-39f96432adba7dd85",
+      "resource_type": "aws_security_group",
+      "region": "us-east-1",
+      "description": "SSH open to the entire internet exposes hosts to credential brute-force and exploitation of the SSH service.",
+      "remediation": "Restrict port 22 to known admin CIDRs or a bastion/SSM Session Manager; never use 0.0.0.0/0.",
+      "frameworks": {
+        "CIS AWS 3.0": "5.2",
+        "MITRE ATT&CK": "T1110",
+        "NIST 800-53": "AC-4"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720174+00:00"
+    },
+    {
+      "check_id": "EC2.1",
+      "title": "Security groups should not allow ingress from 0.0.0.0/0 to port 22 (SSH)",
+      "service": "ec2",
+      "severity": "CRITICAL",
+      "status": "FAIL",
+      "resource_id": "sg-a108222805e4dd1b3",
+      "resource_type": "aws_security_group",
+      "region": "us-east-1",
+      "description": "SSH open to the entire internet exposes hosts to credential brute-force and exploitation of the SSH service.",
+      "remediation": "Restrict port 22 to known admin CIDRs or a bastion/SSM Session Manager; never use 0.0.0.0/0.",
+      "frameworks": {
+        "CIS AWS 3.0": "5.2",
+        "MITRE ATT&CK": "T1110",
+        "NIST 800-53": "AC-4"
+      },
+      "evidence": "Security group sg-a108222805e4dd1b3 allows 0.0.0.0/0 ingress to port 22.",
+      "timestamp": "2026-07-24T21:18:23.720185+00:00"
+    },
+    {
+      "check_id": "EC2.1",
+      "title": "Security groups should not allow ingress from 0.0.0.0/0 to port 22 (SSH)",
+      "service": "ec2",
+      "severity": "CRITICAL",
+      "status": "PASS",
+      "resource_id": "sg-12673c7be961ec39d",
+      "resource_type": "aws_security_group",
+      "region": "us-east-1",
+      "description": "SSH open to the entire internet exposes hosts to credential brute-force and exploitation of the SSH service.",
+      "remediation": "Restrict port 22 to known admin CIDRs or a bastion/SSM Session Manager; never use 0.0.0.0/0.",
+      "frameworks": {
+        "CIS AWS 3.0": "5.2",
+        "MITRE ATT&CK": "T1110",
+        "NIST 800-53": "AC-4"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720194+00:00"
+    },
+    {
+      "check_id": "EC2.2",
+      "title": "Security groups should not allow ingress from 0.0.0.0/0 to port 3389 (RDP)",
+      "service": "ec2",
+      "severity": "CRITICAL",
+      "status": "PASS",
+      "resource_id": "sg-56fd5a53a6275e164",
+      "resource_type": "aws_security_group",
+      "region": "us-east-1",
+      "description": "RDP open to the internet is a leading initial-access vector for ransomware operators.",
+      "remediation": "Restrict port 3389 to known admin CIDRs or a bastion; prefer SSM Session Manager over exposed RDP.",
+      "frameworks": {
+        "CIS AWS 3.0": "5.3",
+        "MITRE ATT&CK": "T1133",
+        "NIST 800-53": "AC-4"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720202+00:00"
+    },
+    {
+      "check_id": "EC2.2",
+      "title": "Security groups should not allow ingress from 0.0.0.0/0 to port 3389 (RDP)",
+      "service": "ec2",
+      "severity": "CRITICAL",
+      "status": "PASS",
+      "resource_id": "sg-39f96432adba7dd85",
+      "resource_type": "aws_security_group",
+      "region": "us-east-1",
+      "description": "RDP open to the internet is a leading initial-access vector for ransomware operators.",
+      "remediation": "Restrict port 3389 to known admin CIDRs or a bastion; prefer SSM Session Manager over exposed RDP.",
+      "frameworks": {
+        "CIS AWS 3.0": "5.3",
+        "MITRE ATT&CK": "T1133",
+        "NIST 800-53": "AC-4"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720206+00:00"
+    },
+    {
+      "check_id": "EC2.2",
+      "title": "Security groups should not allow ingress from 0.0.0.0/0 to port 3389 (RDP)",
+      "service": "ec2",
+      "severity": "CRITICAL",
+      "status": "FAIL",
+      "resource_id": "sg-a108222805e4dd1b3",
+      "resource_type": "aws_security_group",
+      "region": "us-east-1",
+      "description": "RDP open to the internet is a leading initial-access vector for ransomware operators.",
+      "remediation": "Restrict port 3389 to known admin CIDRs or a bastion; prefer SSM Session Manager over exposed RDP.",
+      "frameworks": {
+        "CIS AWS 3.0": "5.3",
+        "MITRE ATT&CK": "T1133",
+        "NIST 800-53": "AC-4"
+      },
+      "evidence": "Security group sg-a108222805e4dd1b3 allows 0.0.0.0/0 ingress to port 3389.",
+      "timestamp": "2026-07-24T21:18:23.720216+00:00"
+    },
+    {
+      "check_id": "EC2.2",
+      "title": "Security groups should not allow ingress from 0.0.0.0/0 to port 3389 (RDP)",
+      "service": "ec2",
+      "severity": "CRITICAL",
+      "status": "PASS",
+      "resource_id": "sg-12673c7be961ec39d",
+      "resource_type": "aws_security_group",
+      "region": "us-east-1",
+      "description": "RDP open to the internet is a leading initial-access vector for ransomware operators.",
+      "remediation": "Restrict port 3389 to known admin CIDRs or a bastion; prefer SSM Session Manager over exposed RDP.",
+      "frameworks": {
+        "CIS AWS 3.0": "5.3",
+        "MITRE ATT&CK": "T1133",
+        "NIST 800-53": "AC-4"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720222+00:00"
+    },
+    {
+      "check_id": "EC2.3",
+      "title": "Security groups should not allow ingress from 0.0.0.0/0 to all ports",
+      "service": "ec2",
+      "severity": "HIGH",
+      "status": "PASS",
+      "resource_id": "sg-56fd5a53a6275e164",
+      "resource_type": "aws_security_group",
+      "region": "us-east-1",
+      "description": "An 'all traffic' rule from anywhere removes the network boundary entirely, exposing every listening service on attached instances.",
+      "remediation": "Replace the all-ports/all-protocols rule with least-privilege rules.",
+      "frameworks": {
+        "CIS AWS 3.0": "5.4",
+        "MITRE ATT&CK": "T1046",
+        "NIST 800-53": "AC-4"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720228+00:00"
+    },
+    {
+      "check_id": "EC2.3",
+      "title": "Security groups should not allow ingress from 0.0.0.0/0 to all ports",
+      "service": "ec2",
+      "severity": "HIGH",
+      "status": "PASS",
+      "resource_id": "sg-39f96432adba7dd85",
+      "resource_type": "aws_security_group",
+      "region": "us-east-1",
+      "description": "An 'all traffic' rule from anywhere removes the network boundary entirely, exposing every listening service on attached instances.",
+      "remediation": "Replace the all-ports/all-protocols rule with least-privilege rules.",
+      "frameworks": {
+        "CIS AWS 3.0": "5.4",
+        "MITRE ATT&CK": "T1046",
+        "NIST 800-53": "AC-4"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720232+00:00"
+    },
+    {
+      "check_id": "EC2.3",
+      "title": "Security groups should not allow ingress from 0.0.0.0/0 to all ports",
+      "service": "ec2",
+      "severity": "HIGH",
+      "status": "PASS",
+      "resource_id": "sg-a108222805e4dd1b3",
+      "resource_type": "aws_security_group",
+      "region": "us-east-1",
+      "description": "An 'all traffic' rule from anywhere removes the network boundary entirely, exposing every listening service on attached instances.",
+      "remediation": "Replace the all-ports/all-protocols rule with least-privilege rules.",
+      "frameworks": {
+        "CIS AWS 3.0": "5.4",
+        "MITRE ATT&CK": "T1046",
+        "NIST 800-53": "AC-4"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720235+00:00"
+    },
+    {
+      "check_id": "EC2.3",
+      "title": "Security groups should not allow ingress from 0.0.0.0/0 to all ports",
+      "service": "ec2",
+      "severity": "HIGH",
+      "status": "PASS",
+      "resource_id": "sg-12673c7be961ec39d",
+      "resource_type": "aws_security_group",
+      "region": "us-east-1",
+      "description": "An 'all traffic' rule from anywhere removes the network boundary entirely, exposing every listening service on attached instances.",
+      "remediation": "Replace the all-ports/all-protocols rule with least-privilege rules.",
+      "frameworks": {
+        "CIS AWS 3.0": "5.4",
+        "MITRE ATT&CK": "T1046",
+        "NIST 800-53": "AC-4"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720238+00:00"
+    },
+    {
+      "check_id": "IAM.1",
+      "title": "IAM password policy should require a minimum length of 14",
+      "service": "iam",
+      "severity": "MEDIUM",
+      "status": "FAIL",
+      "resource_id": "account-password-policy",
+      "resource_type": "aws_iam_account",
+      "region": "global",
+      "description": "A strong account password policy resists brute-force and guessing attacks against console users.",
+      "remediation": "Set a password policy with MinimumPasswordLength >= 14 via `aws iam update-account-password-policy`.",
+      "frameworks": {
+        "CIS AWS 3.0": "1.8",
+        "NIST 800-53": "IA-5"
+      },
+      "evidence": "MinimumPasswordLength = 8",
+      "timestamp": "2026-07-24T21:18:23.720244+00:00"
+    },
+    {
+      "check_id": "IAM.2",
+      "title": "IAM users with console access should have MFA enabled",
+      "service": "iam",
+      "severity": "HIGH",
+      "status": "FAIL",
+      "resource_id": "devops-admin",
+      "resource_type": "aws_iam_user",
+      "region": "global",
+      "description": "MFA adds a second factor so a leaked password alone cannot grant console access.",
+      "remediation": "Enable an MFA device for every user that has a login profile.",
+      "frameworks": {
+        "CIS AWS 3.0": "1.10",
+        "MITRE ATT&CK": "T1078",
+        "NIST 800-53": "IA-2"
+      },
+      "evidence": "User has console access but no MFA device registered.",
+      "timestamp": "2026-07-24T21:18:23.720251+00:00"
+    },
+    {
+      "check_id": "IAM.2",
+      "title": "IAM users with console access should have MFA enabled",
+      "service": "iam",
+      "severity": "HIGH",
+      "status": "PASS",
+      "resource_id": "ci-deployer",
+      "resource_type": "aws_iam_user",
+      "region": "global",
+      "description": "MFA adds a second factor so a leaked password alone cannot grant console access.",
+      "remediation": "Enable an MFA device for every user that has a login profile.",
+      "frameworks": {
+        "CIS AWS 3.0": "1.10",
+        "MITRE ATT&CK": "T1078",
+        "NIST 800-53": "IA-2"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720254+00:00"
+    },
+    {
+      "check_id": "IAM.3",
+      "title": "IAM users should not have AdministratorAccess attached directly",
+      "service": "iam",
+      "severity": "HIGH",
+      "status": "FAIL",
+      "resource_id": "devops-admin",
+      "resource_type": "aws_iam_user",
+      "region": "global",
+      "description": "Attaching AdministratorAccess directly to users violates least privilege and makes a single credential compromise catastrophic. Grant broad permissions through assumable roles instead.",
+      "remediation": "Detach AdministratorAccess from the user and grant scoped permissions, using IAM roles for privileged operations.",
+      "frameworks": {
+        "CIS AWS 3.0": "1.16",
+        "MITRE ATT&CK": "T1098",
+        "NIST 800-53": "AC-6"
+      },
+      "evidence": "AdministratorAccess managed policy is attached directly to this user.",
+      "timestamp": "2026-07-24T21:18:23.720262+00:00"
+    },
+    {
+      "check_id": "IAM.3",
+      "title": "IAM users should not have AdministratorAccess attached directly",
+      "service": "iam",
+      "severity": "HIGH",
+      "status": "PASS",
+      "resource_id": "ci-deployer",
+      "resource_type": "aws_iam_user",
+      "region": "global",
+      "description": "Attaching AdministratorAccess directly to users violates least privilege and makes a single credential compromise catastrophic. Grant broad permissions through assumable roles instead.",
+      "remediation": "Detach AdministratorAccess from the user and grant scoped permissions, using IAM roles for privileged operations.",
+      "frameworks": {
+        "CIS AWS 3.0": "1.16",
+        "MITRE ATT&CK": "T1098",
+        "NIST 800-53": "AC-6"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720264+00:00"
+    },
+    {
+      "check_id": "IAM.4",
+      "title": "IAM users should not have more than one active access key",
+      "service": "iam",
+      "severity": "MEDIUM",
+      "status": "FAIL",
+      "resource_id": "devops-admin",
+      "resource_type": "aws_iam_user",
+      "region": "global",
+      "description": "Multiple active access keys widen the attack surface and complicate rotation and revocation.",
+      "remediation": "Deactivate and delete unused access keys; keep at most one active key.",
+      "frameworks": {
+        "CIS AWS 3.0": "1.13",
+        "NIST 800-53": "AC-2"
+      },
+      "evidence": "Active access keys: 2",
+      "timestamp": "2026-07-24T21:18:23.720281+00:00"
+    },
+    {
+      "check_id": "IAM.4",
+      "title": "IAM users should not have more than one active access key",
+      "service": "iam",
+      "severity": "MEDIUM",
+      "status": "PASS",
+      "resource_id": "ci-deployer",
+      "resource_type": "aws_iam_user",
+      "region": "global",
+      "description": "Multiple active access keys widen the attack surface and complicate rotation and revocation.",
+      "remediation": "Deactivate and delete unused access keys; keep at most one active key.",
+      "frameworks": {
+        "CIS AWS 3.0": "1.13",
+        "NIST 800-53": "AC-2"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720286+00:00"
+    },
+    {
+      "check_id": "S3.1",
+      "title": "S3 buckets should block all public access",
+      "service": "s3",
+      "severity": "HIGH",
+      "status": "FAIL",
+      "resource_id": "acme-customer-exports",
+      "resource_type": "aws_s3_bucket",
+      "region": "us-east-1",
+      "description": "S3 Block Public Access is a safety net that overrides bucket ACLs and policies that would otherwise expose data. All four settings should be on.",
+      "remediation": "Enable Block Public Access (BlockPublicAcls, IgnorePublicAcls, BlockPublicPolicy, RestrictPublicBuckets) at the bucket or, preferably, the account level via the S3 console or `aws s3api put-public-access-block`.",
+      "frameworks": {
+        "CIS AWS 3.0": "2.1.4",
+        "MITRE ATT&CK": "T1530",
+        "NIST 800-53": "AC-3"
+      },
+      "evidence": "PublicAccessBlock configuration: None",
+      "timestamp": "2026-07-24T21:18:23.720295+00:00"
+    },
+    {
+      "check_id": "S3.1",
+      "title": "S3 buckets should block all public access",
+      "service": "s3",
+      "severity": "HIGH",
+      "status": "PASS",
+      "resource_id": "acme-secure-backups",
+      "resource_type": "aws_s3_bucket",
+      "region": "us-east-1",
+      "description": "S3 Block Public Access is a safety net that overrides bucket ACLs and policies that would otherwise expose data. All four settings should be on.",
+      "remediation": "Enable Block Public Access (BlockPublicAcls, IgnorePublicAcls, BlockPublicPolicy, RestrictPublicBuckets) at the bucket or, preferably, the account level via the S3 console or `aws s3api put-public-access-block`.",
+      "frameworks": {
+        "CIS AWS 3.0": "2.1.4",
+        "MITRE ATT&CK": "T1530",
+        "NIST 800-53": "AC-3"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720301+00:00"
+    },
+    {
+      "check_id": "S3.2",
+      "title": "S3 buckets should enable server-side encryption at rest",
+      "service": "s3",
+      "severity": "HIGH",
+      "status": "FAIL",
+      "resource_id": "acme-customer-exports",
+      "resource_type": "aws_s3_bucket",
+      "region": "us-east-1",
+      "description": "Default encryption ensures every object written to the bucket is encrypted at rest without relying on clients to request it.",
+      "remediation": "Enable default encryption (SSE-S3 or SSE-KMS) on the bucket via `aws s3api put-bucket-encryption`.",
+      "frameworks": {
+        "CIS AWS 3.0": "2.1.1",
+        "NIST 800-53": "SC-28"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720307+00:00"
+    },
+    {
+      "check_id": "S3.2",
+      "title": "S3 buckets should enable server-side encryption at rest",
+      "service": "s3",
+      "severity": "HIGH",
+      "status": "PASS",
+      "resource_id": "acme-secure-backups",
+      "resource_type": "aws_s3_bucket",
+      "region": "us-east-1",
+      "description": "Default encryption ensures every object written to the bucket is encrypted at rest without relying on clients to request it.",
+      "remediation": "Enable default encryption (SSE-S3 or SSE-KMS) on the bucket via `aws s3api put-bucket-encryption`.",
+      "frameworks": {
+        "CIS AWS 3.0": "2.1.1",
+        "NIST 800-53": "SC-28"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720311+00:00"
+    },
+    {
+      "check_id": "S3.3",
+      "title": "S3 bucket ACLs should not grant access to Everyone/AuthenticatedUsers",
+      "service": "s3",
+      "severity": "CRITICAL",
+      "status": "PASS",
+      "resource_id": "acme-customer-exports",
+      "resource_type": "aws_s3_bucket",
+      "region": "us-east-1",
+      "description": "ACL grants to the AllUsers or AuthenticatedUsers groups expose bucket contents to anyone on the internet or any AWS account.",
+      "remediation": "Remove public ACL grants and prefer bucket policies with explicit principals; enable Block Public Access as a backstop.",
+      "frameworks": {
+        "CIS AWS 3.0": "2.1.5",
+        "MITRE ATT&CK": "T1530",
+        "NIST 800-53": "AC-3"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720318+00:00"
+    },
+    {
+      "check_id": "S3.3",
+      "title": "S3 bucket ACLs should not grant access to Everyone/AuthenticatedUsers",
+      "service": "s3",
+      "severity": "CRITICAL",
+      "status": "PASS",
+      "resource_id": "acme-secure-backups",
+      "resource_type": "aws_s3_bucket",
+      "region": "us-east-1",
+      "description": "ACL grants to the AllUsers or AuthenticatedUsers groups expose bucket contents to anyone on the internet or any AWS account.",
+      "remediation": "Remove public ACL grants and prefer bucket policies with explicit principals; enable Block Public Access as a backstop.",
+      "frameworks": {
+        "CIS AWS 3.0": "2.1.5",
+        "MITRE ATT&CK": "T1530",
+        "NIST 800-53": "AC-3"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720321+00:00"
+    },
+    {
+      "check_id": "S3.4",
+      "title": "S3 bucket policies should not allow anonymous (Principal '*') access",
+      "service": "s3",
+      "severity": "CRITICAL",
+      "status": "FAIL",
+      "resource_id": "acme-customer-exports",
+      "resource_type": "aws_s3_bucket",
+      "region": "us-east-1",
+      "description": "A bucket policy that Allows a wildcard principal without a restricting condition makes the bucket readable or writable by anyone.",
+      "remediation": "Scope bucket policy statements to specific principals, or add a restricting Condition (e.g. aws:SourceVpce) and enable Block Public Access.",
+      "frameworks": {
+        "CIS AWS 3.0": "2.1.5",
+        "MITRE ATT&CK": "T1530",
+        "NIST 800-53": "AC-3"
+      },
+      "evidence": "Bucket policy Allows a wildcard principal with no restricting Condition.",
+      "timestamp": "2026-07-24T21:18:23.720343+00:00"
+    },
+    {
+      "check_id": "S3.4",
+      "title": "S3 bucket policies should not allow anonymous (Principal '*') access",
+      "service": "s3",
+      "severity": "CRITICAL",
+      "status": "PASS",
+      "resource_id": "acme-secure-backups",
+      "resource_type": "aws_s3_bucket",
+      "region": "us-east-1",
+      "description": "A bucket policy that Allows a wildcard principal without a restricting condition makes the bucket readable or writable by anyone.",
+      "remediation": "Scope bucket policy statements to specific principals, or add a restricting Condition (e.g. aws:SourceVpce) and enable Block Public Access.",
+      "frameworks": {
+        "CIS AWS 3.0": "2.1.5",
+        "MITRE ATT&CK": "T1530",
+        "NIST 800-53": "AC-3"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720346+00:00"
+    },
+    {
+      "check_id": "S3.5",
+      "title": "S3 buckets should have versioning enabled",
+      "service": "s3",
+      "severity": "MEDIUM",
+      "status": "FAIL",
+      "resource_id": "acme-customer-exports",
+      "resource_type": "aws_s3_bucket",
+      "region": "us-east-1",
+      "description": "Versioning preserves prior object versions, aiding recovery from accidental deletion and ransomware that overwrites objects.",
+      "remediation": "Enable versioning via `aws s3api put-bucket-versioning`.",
+      "frameworks": {
+        "CIS AWS 3.0": "2.1.2",
+        "NIST 800-53": "CP-9"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720352+00:00"
+    },
+    {
+      "check_id": "S3.5",
+      "title": "S3 buckets should have versioning enabled",
+      "service": "s3",
+      "severity": "MEDIUM",
+      "status": "PASS",
+      "resource_id": "acme-secure-backups",
+      "resource_type": "aws_s3_bucket",
+      "region": "us-east-1",
+      "description": "Versioning preserves prior object versions, aiding recovery from accidental deletion and ransomware that overwrites objects.",
+      "remediation": "Enable versioning via `aws s3api put-bucket-versioning`.",
+      "frameworks": {
+        "CIS AWS 3.0": "2.1.2",
+        "NIST 800-53": "CP-9"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720355+00:00"
+    },
+    {
+      "check_id": "S3.6",
+      "title": "S3 buckets should have server access logging enabled",
+      "service": "s3",
+      "severity": "LOW",
+      "status": "FAIL",
+      "resource_id": "acme-customer-exports",
+      "resource_type": "aws_s3_bucket",
+      "region": "us-east-1",
+      "description": "Access logs record requests made to the bucket, supporting incident investigation and detection of unauthorized access.",
+      "remediation": "Configure access logging to a dedicated log bucket.",
+      "frameworks": {
+        "CIS AWS 3.0": "2.1.3",
+        "MITRE ATT&CK": "T1530",
+        "NIST 800-53": "AU-2"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720361+00:00"
+    },
+    {
+      "check_id": "S3.6",
+      "title": "S3 buckets should have server access logging enabled",
+      "service": "s3",
+      "severity": "LOW",
+      "status": "FAIL",
+      "resource_id": "acme-secure-backups",
+      "resource_type": "aws_s3_bucket",
+      "region": "us-east-1",
+      "description": "Access logs record requests made to the bucket, supporting incident investigation and detection of unauthorized access.",
+      "remediation": "Configure access logging to a dedicated log bucket.",
+      "frameworks": {
+        "CIS AWS 3.0": "2.1.3",
+        "MITRE ATT&CK": "T1530",
+        "NIST 800-53": "AU-2"
+      },
+      "evidence": "",
+      "timestamp": "2026-07-24T21:18:23.720364+00:00"
+    }
+  ]
+}

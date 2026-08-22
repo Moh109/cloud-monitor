@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cloudguard-cspm"
+version = "0.1.0"
+description = "CloudGuard - a Cloud Security Posture Management (CSPM) scanner for AWS."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "CloudGuard contributors" }]
+keywords = ["cspm", "cloud-security", "aws", "cis-benchmark", "detection-engineering"]
+dependencies = [
+  "boto3>=1.34",
+  "botocore>=1.34",
+  "jinja2>=3.1",
+  "rich>=13.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "moto[all]>=5.0"]
+
+[project.scripts]
+cloudguard = "cloudguard.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["cloudguard*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

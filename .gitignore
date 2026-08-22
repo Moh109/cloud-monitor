@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.venv/
+venv/
+
+# CloudGuard scan output (reports are regenerated; keep the curated samples/ dir)
+out/
+*.local.json
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

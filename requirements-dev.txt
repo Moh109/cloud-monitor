@@ -1,0 +1,5 @@
+# Development / test dependencies (installs runtime deps too).
+-r requirements.txt
+pytest>=8.0
+moto[all]>=5.0
+cryptography>=41.0

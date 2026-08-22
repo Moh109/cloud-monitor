@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CloudGuard Report</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+         background: #0d1117; color: #e6edf3; }
+  header { padding: 28px 32px; border-bottom: 1px solid #21262d;
+           background: linear-gradient(135deg, #161b22, #0d1117); }
+  header h1 { margin: 0 0 4px; font-size: 22px; letter-spacing: .3px; }
+  header .meta { color: #8b949e; font-size: 13px; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 24px 32px 64px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+           gap: 16px; margin: 24px 0; }
+  .card { background: #161b22; border: 1px solid #21262d; border-radius: 10px;
+          padding: 18px 20px; }
+  .card .label { color: #8b949e; font-size: 12px; text-transform: uppercase;
+                 letter-spacing: .6px; }
+  .card .value { font-size: 30px; font-weight: 700; margin-top: 6px; }
+  .score-card { display: flex; align-items: center; gap: 20px; }
+  .gauge { --v: 66; width: 110px; height: 110px; border-radius: 50%;
+           background: conic-gradient(#d29922 calc(var(--v) * 1%), #21262d 0);
+           display: grid; place-items: center; flex: 0 0 auto; }
+  .gauge .inner { width: 84px; height: 84px; border-radius: 50%; background: #161b22;
+                  display: grid; place-items: center; }
+  .gauge .num { font-size: 26px; font-weight: 800; }
+  .grade { font-size: 40px; font-weight: 800; color: #d29922; }
+  table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #21262d;
+           vertical-align: top; }
+  th { color: #8b949e; font-weight: 600; text-transform: uppercase; font-size: 11px;
+       letter-spacing: .5px; }
+  tr:hover td { background: #12171e; }
+  .pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11px;
+          font-weight: 700; }
+  .CRITICAL { background: #7d1a1a; color: #ffdada; }
+  .HIGH { background: #8a3b0d; color: #ffe0c7; }
+  .MEDIUM { background: #7a5c00; color: #fff3c4; }
+  .LOW { background: #0d4a6b; color: #cdeeff; }
+  .INFORMATIONAL { background: #30363d; color: #c9d1d9; }
+  .fw { color: #8b949e; font-size: 11px; }
+  .remediation { color: #adbac7; font-size: 12px; margin-top: 4px; }
+  h2 { font-size: 16px; margin: 34px 0 4px; }
+  .muted { color: #8b949e; font-size: 13px; }
+  code { background: #21262d; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+  footer { color: #8b949e; font-size: 12px; padding: 24px 32px; border-top: 1px solid #21262d; }
+</style>
+</head>
+<body>
+<header>
+  <h1>&#128737;&#65039; CloudGuard &mdash; Cloud Security Posture Report</h1>
+  <div class="meta">
+    Provider <b>AWS</b> &middot;
+    Account <b>123456789012</b> &middot;
+    Regions <b>us-east-1</b> &middot;
+    Generated <b>2026-07-24T21:18:23.744614+00:00</b>
+  </div>
+</header>
+<div class="wrap">
+
+  <div class="cards">
+    <div class="card score-card">
+      <div class="gauge"><div class="inner"><span class="num">66</span></div></div>
+      <div>
+        <div class="label">Posture score</div>
+        <div class="grade">D</div>
+      </div>
+    </div>
+    <div class="card"><div class="label">Controls passed</div>
+      <div class="value" style="color:#3fb950">19</div></div>
+    <div class="card"><div class="label">Controls failed</div>
+      <div class="value" style="color:#f85149">16</div></div>
+    <div class="card"><div class="label">Critical / High</div>
+      <div class="value">3 / 5</div></div>
+  </div>
+
+  <h2>Failing controls (16)</h2>
+  <div class="muted">Sorted by severity. Each finding maps to the controls it violates.</div>
+  
+  <table>
+    <thead><tr>
+      <th>Severity</th><th>Check</th><th>Service</th><th>Resource</th>
+      <th>Finding &amp; remediation</th><th>Frameworks</th>
+    </tr></thead>
+    <tbody>
+    
+      <tr>
+        <td><span class="pill CRITICAL">CRITICAL</span></td>
+        <td><code>EC2.1</code></td>
+        <td>ec2</td>
+        <td>sg-a108222805e4dd1b3</td>
+        <td>
+          <div><b>Security groups should not allow ingress from 0.0.0.0/0 to port 22 (SSH)</b></div>
+          <div class="muted">Security group sg-a108222805e4dd1b3 allows 0.0.0.0/0 ingress to port 22.</div>
+          <div class="remediation">&#128295; Restrict port 22 to known admin CIDRs or a bastion/SSM Session Manager; never use 0.0.0.0/0.</div>
+        </td>
+        <td class="fw">
+          CIS AWS 3.0 5.2<br>MITRE ATT&amp;CK T1110<br>NIST 800-53 AC-4<br>
+        </td>
+      </tr>
+    
+      <tr>
+        <td><span class="pill CRITICAL">CRITICAL</span></td>
+        <td><code>EC2.2</code></td>
+        <td>ec2</td>
+        <td>sg-a108222805e4dd1b3</td>
+        <td>
+          <div><b>Security groups should not allow ingress from 0.0.0.0/0 to port 3389 (RDP)</b></div>
+          <div class="muted">Security group sg-a108222805e4dd1b3 allows 0.0.0.0/0 ingress to port 3389.</div>
+          <div class="remediation">&#128295; Restrict port 3389 to known admin CIDRs or a bastion; prefer SSM Session Manager over exposed RDP.</div>
+        </td>
+        <td class="fw">
+          CIS AWS 3.0 5.3<br>MITRE ATT&amp;CK T1133<br>NIST 800-53 AC-4<br>
+        </td>
+      </tr>
+    
+      <tr>
+        <td><span class="pill CRITICAL">CRITICAL</span></td>
+        <td><code>S3.4</code></td>
+        <td>s3</td>
+        <td>acme-customer-exports</td>
+        <td>
+          <div><b>S3 bucket policies should not allow anonymous (Principal &#39;*&#39;) access</b></div>
+          <div class="muted">Bucket policy Allows a wildcard principal with no restricting Condition.</div>
+          <div class="remediation">&#128295; Scope bucket policy statements to specific principals, or add a restricting Condition (e.g. aws:SourceVpce) and enable Block Public Access.</div>
+        </td>
+        <td class="fw">
+          CIS AWS 3.0 2.1.5<br>MITRE ATT&amp;CK T1530<br>NIST 800-53 AC-3<br>
+        </td>
+      </tr>
+    
+      <tr>
+        <td><span class="pill HIGH">HIGH</span></td>
+        <td><code>CT.1</code></td>
+        <td>cloudtrail</td>
+        <td>NO_CLOUDTRAIL_CONFIGURED</td>
+        <td>
+          <div><b>CloudTrail logging should be enabled</b></div>
+          <div class="muted">No CloudTrail trail is configured in this account/region.</div>
+          <div class="remediation">&#128295; Create a trail and start logging via `aws cloudtrail start-logging`.</div>
+        </td>
+        <td class="fw">
+          CIS AWS 3.0 3.1<br>MITRE ATT&amp;CK T1562.008<br>NIST 800-53 AU-2<br>
+        </td>
+      </tr>
+    
+      <tr>
+        <td><span class="pill HIGH">HIGH</span></td>
+        <td><code>IAM.2</code></td>
+        <td>iam</td>
+        <td>devops-admin</td>
+        <td>
+          <div><b>IAM users with console access should have MFA enabled</b></div>
+          <div class="muted">User has console access but no MFA device registered.</div>
+          <div class="remediation">&#128295; Enable an MFA device for every user that has a login profile.</div>
+        </td>
+        <td class="fw">
+          CIS AWS 3.0 1.10<br>MITRE ATT&amp;CK T1078<br>NIST 800-53 IA-2<br>
+        </td>
+      </tr>
+    
+      <tr>
+        <td><span class="pill HIGH">HIGH</span></td>
+        <td><code>IAM.3</code></td>
+        <td>iam</td>
+        <td>devops-admin</td>
+        <td>
+          <div><b>IAM users should not have AdministratorAccess attached directly</b></div>
+          <div class="muted">AdministratorAccess managed policy is attached directly to this user.</div>
+          <div class="remediation">&#128295; Detach AdministratorAccess from the user and grant scoped permissions, using IAM roles for privileged operations.</div>
+        </td>
+        <td class="fw">
+          CIS AWS 3.0 1.16<br>MITRE ATT&amp;CK T1098<br>NIST 800-53 AC-6<br>
+        </td>
+      </tr>
+    
+      <tr>
+        <td><span class="pill HIGH">HIGH</span></td>
+        <td><code>S3.1</code></td>
+        <td>s3</td>
+        <td>acme-customer-exports</td>
+        <td>
+          <div><b>S3 buckets should block all public access</b></div>
+          <div class="muted">PublicAccessBlock configuration: None</div>
+          <div class="remediation">&#128295; Enable Block Public Access (BlockPublicAcls, IgnorePublicAcls, BlockPublicPolicy, RestrictPublicBuckets) at the bucket or, preferably, the account level via the S3 console or `aws s3api put-public-access-block`.</div>
+        </td>
+        <td class="fw">
+          CIS AWS 3.0 2.1.4<br>MITRE ATT&amp;CK T1530<br>NIST 800-53 AC-3<br>
+        </td>
+      </tr>
+    
+      <tr>
+        <td><span class="pill HIGH">HIGH</span></td>
+        <td><code>S3.2</code></td>
+        <td>s3</td>
+        <td>acme-customer-exports</td>
+        <td>
+          <div><b>S3 buckets should enable server-side encryption at rest</b></div>
+          
+          <div class="remediation">&#128295; Enable default encryption (SSE-S3 or SSE-KMS) on the bucket via `aws s3api put-bucket-encryption`.</div>
+        </td>
+        <td class="fw">
+          CIS AWS 3.0 2.1.1<br>NIST 800-53 SC-28<br>
+        </td>
+      </tr>
+    
+      <tr>
+        <td><span class="pill MEDIUM">MEDIUM</span></td>
+        <td><code>CT.2</code></td>
+        <td>cloudtrail</td>
+        <td>NO_CLOUDTRAIL_CONFIGURED</td>
+        <td>
+          <div><b>CloudTrail should be multi-region</b></div>
+          
+          <div class="remediation">&#128295; Enable IsMultiRegionTrail on the trail.</div>
+        </td>
+        <td class="fw">
+          CIS AWS 3.0 3.1<br>NIST 800-53 AU-2<br>
+        </td>
+      </tr>
+    
+      <tr>
+        <td><span class="pill MEDIUM">MEDIUM</span></td>
+        <td><code>CT.3</code></td>
+        <td>cloudtrail</td>
+        <td>NO_CLOUDTRAIL_CONFIGURED</td>
+        <td>
+          <div><b>CloudTrail log file validation should be enabled</b></div>
+          
+          <div class="remediation">&#128295; Enable log file validation on the trail (EnableLogFileValidation).</div>
+        </td>
+        <td class="fw">
+          CIS AWS 3.0 3.2<br>MITRE ATT&amp;CK T1070<br>NIST 800-53 AU-9<br>
+        </td>
+      </tr>
+    
+      <tr>
+        <td><span class="pill MEDIUM">MEDIUM</span></td>
+        <td><code>IAM.1</code></td>
+        <td>iam</td>
+        <td>account-password-policy</td>
+        <td>
+          <div><b>IAM password policy should require a minimum length of 14</b></div>
+          <div class="muted">MinimumPasswordLength = 8</div>
+          <div class="remediation">&#128295; Set a password policy with MinimumPasswordLength &gt;= 14 via `aws iam update-account-password-policy`.</div>
+        </td>
+        <td class="fw">
+          CIS AWS 3.0 1.8<br>NIST 800-53 IA-5<br>
+        </td>
+      </tr>
+    
+      <tr>
+        <td><span class="pill MEDIUM">MEDIUM</span></td>
+        <td><code>IAM.4</code></td>
+        <td>iam</td>
+        <td>devops-admin</td>
+        <td>
+          <div><b>IAM users should not have more than one active access key</b></div>
+          <div class="muted">Active access keys: 2</div>
+          <div class="remediation">&#128295; Deactivate and delete unused access keys; keep at most one active key.</div>
+        </td>
+        <td class="fw">
+          CIS AWS 3.0 1.13<br>NIST 800-53 AC-2<br>
+        </td>
+      </tr>
+    
+      <tr>
+        <td><span class="pill MEDIUM">MEDIUM</span></td>
+        <td><code>S3.5</code></td>
+        <td>s3</td>
+        <td>acme-customer-exports</td>
+        <td>
+          <div><b>S3 buckets should have versioning enabled</b></div>
+          
+          <div class="remediation">&#128295; Enable versioning via `aws s3api put-bucket-versioning`.</div>
+        </td>
+        <td class="fw">
+          CIS AWS 3.0 2.1.2<br>NIST 800-53 CP-9<br>
+        </td>
+      </tr>
+    
+      <tr>
+        <td><span class="pill LOW">LOW</span></td>
+        <td><code>CT.4</code></td>
+        <td>cloudtrail</td>
+        <td>NO_CLOUDTRAIL_CONFIGURED</td>
+        <td>
+          <div><b>CloudTrail logs should be encrypted with a KMS key</b></div>
+          
+          <div class="remediation">&#128295; Set a KmsKeyId on the trail to enable SSE-KMS on delivered logs.</div>
+        </td>
+        <td class="fw">
+          CIS AWS 3.0 3.5<br>NIST 800-53 SC-28<br>
+        </td>
+      </tr>
+    
+      <tr>
+        <td><span class="pill LOW">LOW</span></td>
+        <td><code>S3.6</code></td>
+        <td>s3</td>
+        <td>acme-customer-exports</td>
+        <td>
+          <div><b>S3 buckets should have server access logging enabled</b></div>
+          
+          <div class="remediation">&#128295; Configure access logging to a dedicated log bucket.</div>
+        </td>
+        <td class="fw">
+          CIS AWS 3.0 2.1.3<br>MITRE ATT&amp;CK T1530<br>NIST 800-53 AU-2<br>
+        </td>
+      </tr>
+    
+      <tr>
+        <td><span class="pill LOW">LOW</span></td>
+        <td><code>S3.6</code></td>
+        <td>s3</td>
+        <td>acme-secure-backups</td>
+        <td>
+          <div><b>S3 buckets should have server access logging enabled</b></div>
+          
+          <div class="remediation">&#128295; Configure access logging to a dedicated log bucket.</div>
+        </td>
+        <td class="fw">
+          CIS AWS 3.0 2.1.3<br>MITRE ATT&amp;CK T1530<br>NIST 800-53 AU-2<br>
+        </td>
+      </tr>
+    
+    </tbody>
+  </table>
+  
+
+  <h2>Passing controls (19)</h2>
+  <table>
+    <thead><tr><th>Check</th><th>Service</th><th>Resource</th><th>Title</th></tr></thead>
+    <tbody>
+    
+      <tr><td><code>EC2.1</code></td><td>ec2</td>
+          <td>sg-56fd5a53a6275e164</td><td>Security groups should not allow ingress from 0.0.0.0/0 to port 22 (SSH)</td></tr>
+    
+      <tr><td><code>EC2.1</code></td><td>ec2</td>
+          <td>sg-39f96432adba7dd85</td><td>Security groups should not allow ingress from 0.0.0.0/0 to port 22 (SSH)</td></tr>
+    
+      <tr><td><code>EC2.1</code></td><td>ec2</td>
+          <td>sg-12673c7be961ec39d</td><td>Security groups should not allow ingress from 0.0.0.0/0 to port 22 (SSH)</td></tr>
+    
+      <tr><td><code>EC2.2</code></td><td>ec2</td>
+          <td>sg-56fd5a53a6275e164</td><td>Security groups should not allow ingress from 0.0.0.0/0 to port 3389 (RDP)</td></tr>
+    
+      <tr><td><code>EC2.2</code></td><td>ec2</td>
+          <td>sg-39f96432adba7dd85</td><td>Security groups should not allow ingress from 0.0.0.0/0 to port 3389 (RDP)</td></tr>
+    
+      <tr><td><code>EC2.2</code></td><td>ec2</td>
+          <td>sg-12673c7be961ec39d</td><td>Security groups should not allow ingress from 0.0.0.0/0 to port 3389 (RDP)</td></tr>
+    
+      <tr><td><code>EC2.3</code></td><td>ec2</td>
+          <td>sg-56fd5a53a6275e164</td><td>Security groups should not allow ingress from 0.0.0.0/0 to all ports</td></tr>
+    
+      <tr><td><code>EC2.3</code></td><td>ec2</td>
+          <td>sg-39f96432adba7dd85</td><td>Security groups should not allow ingress from 0.0.0.0/0 to all ports</td></tr>
+    
+      <tr><td><code>EC2.3</code></td><td>ec2</td>
+          <td>sg-a108222805e4dd1b3</td><td>Security groups should not allow ingress from 0.0.0.0/0 to all ports</td></tr>
+    
+      <tr><td><code>EC2.3</code></td><td>ec2</td>
+          <td>sg-12673c7be961ec39d</td><td>Security groups should not allow ingress from 0.0.0.0/0 to all ports</td></tr>
+    
+      <tr><td><code>IAM.2</code></td><td>iam</td>
+          <td>ci-deployer</td><td>IAM users with console access should have MFA enabled</td></tr>
+    
+      <tr><td><code>IAM.3</code></td><td>iam</td>
+          <td>ci-deployer</td><td>IAM users should not have AdministratorAccess attached directly</td></tr>
+    
+      <tr><td><code>IAM.4</code></td><td>iam</td>
+          <td>ci-deployer</td><td>IAM users should not have more than one active access key</td></tr>
+    
+      <tr><td><code>S3.1</code></td><td>s3</td>
+          <td>acme-secure-backups</td><td>S3 buckets should block all public access</td></tr>
+    
+      <tr><td><code>S3.2</code></td><td>s3</td>
+          <td>acme-secure-backups</td><td>S3 buckets should enable server-side encryption at rest</td></tr>
+    
+      <tr><td><code>S3.3</code></td><td>s3</td>
+          <td>acme-customer-exports</td><td>S3 bucket ACLs should not grant access to Everyone/AuthenticatedUsers</td></tr>
+    
+      <tr><td><code>S3.3</code></td><td>s3</td>
+          <td>acme-secure-backups</td><td>S3 bucket ACLs should not grant access to Everyone/AuthenticatedUsers</td></tr>
+    
+      <tr><td><code>S3.4</code></td><td>s3</td>
+          <td>acme-secure-backups</td><td>S3 bucket policies should not allow anonymous (Principal &#39;*&#39;) access</td></tr>
+    
+      <tr><td><code>S3.5</code></td><td>s3</td>
+          <td>acme-secure-backups</td><td>S3 buckets should have versioning enabled</td></tr>
+    
+    </tbody>
+  </table>
+
+</div>
+<footer>Generated by CloudGuard 0.1.0 &middot; Checks mapped to CIS AWS Foundations Benchmark, MITRE ATT&amp;CK, and NIST 800-53.</footer>
+</body>
+</html>
