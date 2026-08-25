@@ -188,9 +188,9 @@ Quick recap: I'm a junior CS student at UH graduating May 2028, and I've
 applied to [REQ TITLE / NUMBER] for Summer 2027.
 
 The project I mentioned, CloudGuard, is an AWS posture scanner I built —
-17 CIS and MITRE ATT&CK-mapped checks, a severity-weighted account score,
-and a CI gate that blocks HIGH-severity misconfigurations from shipping.
-Code and a sample report: github.com/Moh109/cloud-monitor
+17 checks mapped to CIS, MITRE ATT&CK and NIST 800-53 controls, a
+severity-weighted account score, and a CI gate that blocks HIGH-severity
+misconfigurations from shipping. Happy to walk through it.
 
 [ONE SENTENCE connecting your background to something they said they need.]
 
@@ -266,7 +266,7 @@ That's a good fall. It's achievable from where you're standing.
 1. **Apply online before the fair.** Nothing else on this list comes close. Energy majors fill Summer 2027 by roughly November–December.
 2. **Volume: 25–40 applications this fall, not 8.** The fair covers maybe 12 of them. The most common way strong students end up with nothing is applying only to the companies that showed up to one fair.
 3. **Follow up within 24 hours, with something specific in it.**
-4. **Lead with CloudGuard every time.** This is your genuine differentiator. Most juniors have coursework; you have a 1,900-line tool with tests, CI, Docker, and a dashboard. That gap is bigger than you think it is.
+4. **Lead with CloudGuard every time.** This is your genuine differentiator. Most juniors have coursework; you have a tool with a 22-test suite, a CI pipeline, and an HTML dashboard. That gap is bigger than you think it is.
 5. **Work UH alumni on LinkedIn** — five messages a week to UH grads at Tier 1 companies. "I'm a UH CS junior, I applied to X, would you be open to 15 minutes?" Referrals move applications more than career fairs do.
 6. **Don't stop at this fair.** The biggest intern classes in the country aren't on this list and don't come to Houston fairs. Apply to them in parallel.
 
