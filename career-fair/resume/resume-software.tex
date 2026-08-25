@@ -1,0 +1,170 @@
+%-------------------------------------------------------------------------------
+% Muhammad Shaikh - Resume (Software / Data variant)
+% Built on Jake Gutierrez's resume template (MIT). Compile on Overleaf with pdflatex.
+%
+% BEFORE YOU COMPILE: replace every [[ ... ]] placeholder with a real number you
+% can defend in an interview. If you cannot defend it, delete the phrase entirely
+% rather than guessing -- a number you can't back up is worse than no number.
+%-------------------------------------------------------------------------------
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.6in}
+\addtolength{\textwidth}{1.2in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+\newcommand{\resumeItem}[1]{
+  \item\small{{#1 \vspace{-2pt}}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Muhammad Shaikh} \\ \vspace{3pt}
+    \small Houston, TX $|$ PHONE-REDACTED $|$
+    \href{mailto:mbshaikh@cougarnet.uh.edu}{\underline{mbshaikh@cougarnet.uh.edu}} $|$
+    \href{https://linkedin.com/in/muhammad-shaikh}{\underline{linkedin.com/in/muhammad-shaikh}} $|$
+    \href{https://github.com/Moh109}{\underline{github.com/Moh109}}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of Houston}{Houston, TX}
+      {B.S. Computer Science $|$ GPA: 3.61 / 4.00}{Expected May 2028}
+    \resumeItemListStart
+        \resumeItem{\textbf{Coursework:} Data Structures \& Algorithms, Computer Organization \& Architecture, Automata Theory, Discrete Mathematics, Linear Algebra, Statistics}
+    \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {IT Technician}{Oct 2024 -- Present}
+      {University of Houston}{Houston, TX}
+      \resumeItemListStart
+        \resumeItem{Own classroom technology across \textbf{50+ rooms}, resolving hardware, OS, and network faults on Windows 10/11 and ChromeOS endpoints end to end -- intake, root cause, documented fix -- without escalation on the majority of tickets}
+        \resumeItem{Eliminated recurring hardware failures in high-traffic rooms by tracing repeat tickets to a common physical cause, then redesigning display/PC layouts and cable routing for serviceability}
+        \resumeItem{Drive a shared defect queue with facilities and department leads, writing reproduction steps and resolution notes precise enough that the next technician closes the same issue without re-diagnosing it}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{CloudGuard} $|$ \emph{Python, boto3, Docker, GitHub Actions, pytest, moto} $|$ \href{https://github.com/Moh109/cloud-monitor}{\underline{github.com/Moh109/cloud-monitor}}}{2026}
+          \resumeItemListStart
+            \resumeItem{Built an agentless AWS cloud security posture scanner (\textbf{$\sim$1,900 lines of Python}) that audits an account against \textbf{17 security controls} spanning S3, IAM, EC2 security groups, and CloudTrail, mapping every finding to \textbf{CIS Benchmark v3.0, MITRE ATT\&CK, and NIST 800-53}}
+            \resumeItem{Designed a decorator-based check registry so a new control is a 15-line class the engine auto-discovers, and a severity-weighted 0--100 posture score that reduces an entire account's risk to one trendable number and letter grade}
+            \resumeItem{Shipped three reporters -- rich console, SIEM-ready JSON, and a self-contained HTML dashboard -- plus a \texttt{--fail-on} CI gate that blocks any pipeline shipping a HIGH-severity misconfiguration; \textbf{22 tests} run on every push through GitHub Actions}
+            \resumeItem{Made the scanner reproducible with zero AWS setup by provisioning an intentionally-insecure mock account with \texttt{moto}, so a reviewer runs a complete scan in a single command}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{StudyWise} $|$ \emph{Next.js, React, TypeScript, PostgreSQL, LangChain, ChromaDB, Gemini API}}{Jan 2026 -- Present}
+          \resumeItemListStart
+            \resumeItem{Built and deployed a full-stack conversational AI tutor that explains concepts through real-world analogies, worked visual examples, and runnable code snippets, serving \textbf{[[N]] active users}}
+            \resumeItem{Implemented a retrieval-augmented generation pipeline over LangChain and ChromaDB with dual Visual/Text learning modes driven by dynamic prompt construction}
+            \resumeItem{Engineered the Next.js API layer with request validation, safety filtering, and structured error handling over a PostgreSQL (Supabase) data model}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Invesight} $|$ \emph{Python, Flask, scikit-learn, Alpha Vantage API}}{Jul -- Aug 2025}
+          \resumeItemListStart
+            \resumeItem{Trained and benchmarked \textbf{7 ML models} (Random Forest, gradient boosting, neural networks) on multi-source market data, selecting the top performer by backtested accuracy rather than training fit}
+            \resumeItem{Shipped an interactive Flask dashboard surfacing \textbf{20+ technical indicators}, with retry logic and graceful degradation when upstream market APIs rate-limit or fail}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{Detection-as-Code Pipeline} $|$ \emph{Python, Docker, GitHub Actions, Elasticsearch, Linux}}{Aug 2026 -- Present}
+          \resumeItemListStart
+            \resumeItem{Building a GitHub Actions pipeline that lints, unit-tests, and schema-validates detection rule definitions on every commit, replacing a manual review gate}
+            \resumeItem{Containerizing Linux and Windows test hosts with Docker to replay attack telemetry against the rule set and report per-build pass/fail results}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------LEADERSHIP-----------
+\section{Leadership}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Team Lead}{Aug 2025 -- Present}
+      {Code Coogs, University of Houston}{Houston, TX}
+      \resumeItemListStart
+        \resumeItem{Lead a \textbf{[[N]]-person} development team building StudyWise through the full cycle -- design, build, test, deploy -- running sprint planning, task delegation, and code review to hold the team to milestone dates}
+        \resumeItem{Own technical architecture decisions across API design, data modeling, and prompt engineering strategy}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, C/C++, Java, JavaScript/TypeScript, SQL, Bash, HTML/CSS, LaTeX} \\
+     \textbf{Frameworks \& Libraries}{: Next.js, React, Node.js, Flask, TailwindCSS, PyTorch, scikit-learn, LangChain, NumPy, Pandas} \\
+     \textbf{Cloud \& Infrastructure}{: AWS (S3, IAM, EC2, CloudTrail), Docker, GitHub Actions (CI/CD), Linux, Git} \\
+     \textbf{Databases}{: PostgreSQL (Supabase), SQLite / libSQL (Turso), ChromaDB, Elasticsearch} \\
+     \textbf{Certifications}{: Foundations of Operationalizing MITRE ATT\&CK v13 -- AttackIQ (2025); IT Specialist: Java -- Certiport (2024)}
+    }}
+ \end{itemize}
+
+\end{document}
