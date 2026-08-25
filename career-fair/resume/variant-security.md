@@ -12,7 +12,7 @@ intern teams work on.
 
 ## The swap
 
-Take `resume-software.tex` and make exactly three changes:
+Take `resume-general.tex` and make exactly three changes:
 
 **1. Move Detection-as-Code up**, directly under CloudGuard. Those two projects
 tell one coherent story — *I write security controls as code, test them in CI, and

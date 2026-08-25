@@ -106,7 +106,7 @@ an answer, the number is a liability, not an asset. Delete rather than guess.
 No LaTeX in this environment, so the PDF isn't built. Fastest path:
 
 1. Go to [overleaf.com](https://overleaf.com) → New Project → Blank Project.
-2. Paste `resume-software.tex` in.
+2. Paste `resume-general.tex` in.
 3. Set the compiler to **pdfLaTeX** (Menu → Compiler).
 4. Fill the `[[N]]` placeholders and restore your phone number — it's redacted in
    this file because this repo is public and phone numbers in public git history
@@ -116,3 +116,48 @@ No LaTeX in this environment, so the PDF isn't built. Fastest path:
 **Then get human eyes on it.** UH Career Services does resume drop-ins — go once
 before September 7th. Ten minutes with someone who reads 200 of these a week will
 catch something I can't see from here.
+
+---
+
+# Final decisions (general-purpose version)
+
+The goal shifted to one resume that works for **any** software or internship
+position, rather than a fair-targeted pair. What that changed:
+
+**Four projects, not five.** CloudGuard, StudyWise, Invesight, MedLog. The
+selection is deliberate — each one covers a different screen:
+
+| Project | Covers |
+|---|---|
+| CloudGuard | Cloud, DevOps, CI/CD, security, testing rigor |
+| StudyWise | Full-stack web, AI/RAG, API design |
+| Invesight | Data, ML, Python |
+| MedLog | C++, OOP, systems fundamentals |
+
+**MedLog came back in.** It's a freshman class project and it's the weakest of
+the five on its own merits — but it's the only C++ artifact you have, and a
+general-purpose resume can't afford a hole where systems and OOP should be.
+Plenty of employers (SLB, NOV, anything embedded or quant-adjacent) screen for
+C++ before they read anything else. Two bullets is enough to pass that screen.
+
+**Detection-as-Code came off.** It overlaps CloudGuard heavily — same CI, same
+Docker, same security framing — so on a general resume it spends four lines
+saying something CloudGuard already said better. It's also still in progress,
+and "Building…" reads weaker than a finished project. Swap it back in for
+security-specific applications; see `variant-security.md`.
+
+**Placeholders resolved.** Code Coogs is a 4-person team. The StudyWise user
+count came out entirely rather than carrying a number that couldn't be defended.
+
+**Prose tightened throughout** to fit one page without shrinking the font —
+roughly a dozen bullets lost their filler words. That was a quality win
+independent of the space: "auditing accounts against 17 controls" is better than
+"that audits an account against 17 security controls" regardless of page count.
+
+## One loose thread
+
+**Elasticsearch** is still on the Databases line, but the only project that used
+it (Detection-as-Code) is no longer on the page. It's honest — you are genuinely
+building with it — so it can stay. Just be ready for "where did you use
+Elasticsearch?" and have the Detection-as-Code answer loaded. If you'd rather not
+field that question, delete the word.

@@ -7,16 +7,27 @@ want a recruiter to find when they open it.
 
 | File | What it is |
 |---|---|
-| [`PLAYBOOK.md`](PLAYBOOK.md) | Employer tiers, the 4-hour route, pitch scripts, follow-up templates, 3-week plan |
-| [`resume/resume-software.tex`](resume/resume-software.tex) | Rewritten resume, Overleaf-ready (pdfLaTeX) |
-| [`resume/resume-plaintext.txt`](resume/resume-plaintext.txt) | Same content as plain text, for pasting into applications |
-| [`resume/CHANGES.md`](resume/CHANGES.md) | Every change to the resume and the reasoning behind it |
-| [`resume/variant-security.md`](resume/variant-security.md) | The three swaps that make a security-targeted version |
+| [`resume/resume-general.tex`](resume/resume-general.tex) | The resume. General-purpose, compiles to exactly one page with pdfLaTeX. |
+| [`resume/resume-plaintext.txt`](resume/resume-plaintext.txt) | Extracted from the compiled PDF — paste into application forms |
+| [`resume/CHANGES.md`](resume/CHANGES.md) | Every change and the reasoning behind it |
+| [`resume/variant-security.md`](resume/variant-security.md) | Three swaps that make a security-targeted version |
+| [`PLAYBOOK.md`](PLAYBOOK.md) | Employer tiers, 4-hour route, pitch scripts, follow-up templates, 3-week plan |
 
-## Before you compile
+## Compiling
 
-1. Restore your phone number — it's redacted as `PHONE-REDACTED` in the `.tex`
-   because this repo is public and numbers in public git history get scraped.
-   Put it back in your local copy only.
-2. Fill the two `[[N]]` placeholders (StudyWise users, Code Coogs team size), or
-   delete those phrases. Don't guess a number you can't defend in an interview.
+```bash
+pdflatex resume-general.tex
+```
+
+Or paste into a blank Overleaf project with the compiler set to **pdfLaTeX**.
+
+**Before you compile:** replace `PHONE-REDACTED` in the header with your real
+number. It's redacted here because this repo is public and phone numbers in
+public git history get scraped.
+
+## Layout is tuned to the millimetre
+
+The spacing values (`\textheight`, `\topmargin`, and the negative `\vspace` in
+`\resumeItem`) were tuned so the content lands on one page with ~0.44in top and
+~0.41in bottom margins. If you add a bullet, something will silently push onto a
+second page — recompile and check the page count before you print.
