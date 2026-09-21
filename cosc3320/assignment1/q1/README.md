@@ -169,23 +169,29 @@ search needs.
 
 ### Files
 
+The program is given in **Python** and in **C**; both implement exactly the same
+algorithm and produce byte-identical move lists.
+
 | file | purpose |
 |---|---|
-| `hanoi_graph.c` | the algorithm of part (a); prints every move |
-| `hanoi_bfs.c` | exhaustive BFS, exact optimum, used only to check part (a) |
-| `Makefile` | `make`, `make run`, `make verify` |
+| `hanoi_graph.py` | the algorithm of part (a); prints every move |
+| `hanoi_bfs.py` | exhaustive BFS, exact optimum, used only to check part (a) |
+| `hanoi_graph.c`, `hanoi_bfs.c` | the same two programs in C (faster: BFS reaches `n = 12`) |
+| `Makefile` | `make`, `make run`, `make verify` for the C versions |
 | `output/hanoi_n1_to_n10.txt` | the required output for `n = 1 … 10` |
 | `output/bfs_optimum.txt` | the optimum table for `n = 1 … 11` |
 
 ### Build and run
 
 ```sh
-make                      # builds both programs
-./hanoi_graph             # n = 1..10, every move printed   (part b)
-./hanoi_graph 7           # just n = 7
-./hanoi_graph 1 40        # n = 1..40
-./hanoi_graph -s 1 40     # move counts only
-./hanoi_bfs 11            # exact optima, n = 1..11
+python3 hanoi_graph.py            # n = 1..10, every move printed   (part b)
+python3 hanoi_graph.py 7          # just n = 7
+python3 hanoi_graph.py 1 40       # n = 1..40
+python3 hanoi_graph.py -s 1 40    # move counts only
+python3 hanoi_bfs.py 8            # exact optima, n = 1..8
+
+make && ./hanoi_graph             # the C version, same output
+./hanoi_bfs 11                    # exact optima, n = 1..11 (~40 s, 360 MB)
 ```
 
 Every move is printed as
