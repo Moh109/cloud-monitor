@@ -177,6 +177,7 @@ algorithm and produce byte-identical move lists.
 | `hanoi_graph.py` | the algorithm of part (a); prints every move |
 | `hanoi_bfs.py` | exhaustive BFS, exact optimum, used only to check part (a) |
 | `hanoi_graph.c`, `hanoi_bfs.c` | the same two programs in C (faster: BFS reaches `n = 12`) |
+| `hanoi_graph.cpp` | the same algorithm in C++, reading `n` from `cin` |
 | `Makefile` | `make`, `make run`, `make verify` for the C versions |
 | `output/hanoi_n1_to_n10.txt` | the required output for `n = 1 … 10` |
 | `output/bfs_optimum.txt` | the optimum table for `n = 1 … 11` |
@@ -191,6 +192,8 @@ python3 hanoi_graph.py -s 1 40    # move counts only
 python3 hanoi_bfs.py 8            # exact optima, n = 1..8
 
 make && ./hanoi_graph             # the C version, same output
+./hanoi_graph_cpp                 # C++ version, prompts for n on stdin
+echo "1 2 3 4 5 6 7 8 9 10 0" | ./hanoi_graph_cpp    # part b in one go
 ./hanoi_bfs 11                    # exact optima, n = 1..11 (~40 s, 360 MB)
 ```
 
