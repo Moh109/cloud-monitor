@@ -1,0 +1,363 @@
+Towers of Hanoi on G = (V,E)
+  V = {Start, A1, A2, A3, A4, Dest}
+  E = {(Start,A1), (A1,A2), (A2,A3), (A3,A4), (A4,A1), (A1,Dest)}
+
+===============================================================
+ n = 1   moves = 2   (lower bound 2n = 2,  optimum = 2)
+===============================================================
+         1.  disk 1    Start -> A1   
+         2.  disk 1    A1    -> Dest 
+  [verified: 2 legal moves, all 1 disks stacked in order on Dest]
+
+===============================================================
+ n = 2   moves = 6   (lower bound 2n = 4,  optimum = 6)
+===============================================================
+         1.  disk 1    Start -> A1   
+         2.  disk 1    A1    -> A2   
+         3.  disk 2    Start -> A1   
+         4.  disk 2    A1    -> Dest 
+         5.  disk 1    A2    -> A1   
+         6.  disk 1    A1    -> Dest 
+  [verified: 6 legal moves, all 2 disks stacked in order on Dest]
+
+===============================================================
+ n = 3   moves = 10   (lower bound 2n = 6,  optimum = 10)
+===============================================================
+         1.  disk 1    Start -> A1   
+         2.  disk 1    A1    -> A2   
+         3.  disk 2    Start -> A1   
+         4.  disk 2    A1    -> A4   
+         5.  disk 3    Start -> A1   
+         6.  disk 3    A1    -> Dest 
+         7.  disk 2    A4    -> A1   
+         8.  disk 2    A1    -> Dest 
+         9.  disk 1    A2    -> A1   
+        10.  disk 1    A1    -> Dest 
+  [verified: 10 legal moves, all 3 disks stacked in order on Dest]
+
+===============================================================
+ n = 4   moves = 16   (lower bound 2n = 8,  optimum = 16)
+===============================================================
+         1.  disk 1    Start -> A1   
+         2.  disk 1    A1    -> A2   
+         3.  disk 2    Start -> A1   
+         4.  disk 2    A1    -> A4   
+         5.  disk 2    A4    -> A3   
+         6.  disk 3    Start -> A1   
+         7.  disk 3    A1    -> A4   
+         8.  disk 4    Start -> A1   
+         9.  disk 4    A1    -> Dest 
+        10.  disk 3    A4    -> A1   
+        11.  disk 3    A1    -> Dest 
+        12.  disk 2    A3    -> A4   
+        13.  disk 2    A4    -> A1   
+        14.  disk 2    A1    -> Dest 
+        15.  disk 1    A2    -> A1   
+        16.  disk 1    A1    -> Dest 
+  [verified: 16 legal moves, all 4 disks stacked in order on Dest]
+
+===============================================================
+ n = 5   moves = 22   (lower bound 2n = 10,  optimum = 22)
+===============================================================
+         1.  disk 1    Start -> A1   
+         2.  disk 1    A1    -> A2   
+         3.  disk 2    Start -> A1   
+         4.  disk 2    A1    -> A4   
+         5.  disk 2    A4    -> A3   
+         6.  disk 1    A2    -> A3   
+         7.  disk 3    Start -> A1   
+         8.  disk 3    A1    -> A2   
+         9.  disk 4    Start -> A1   
+        10.  disk 4    A1    -> A4   
+        11.  disk 5    Start -> A1   
+        12.  disk 5    A1    -> Dest 
+        13.  disk 4    A4    -> A1   
+        14.  disk 4    A1    -> Dest 
+        15.  disk 3    A2    -> A1   
+        16.  disk 3    A1    -> Dest 
+        17.  disk 1    A3    -> A2   
+        18.  disk 2    A3    -> A4   
+        19.  disk 2    A4    -> A1   
+        20.  disk 2    A1    -> Dest 
+        21.  disk 1    A2    -> A1   
+        22.  disk 1    A1    -> Dest 
+  [verified: 22 legal moves, all 5 disks stacked in order on Dest]
+
+===============================================================
+ n = 6   moves = 30   (lower bound 2n = 12,  optimum = 28)
+===============================================================
+         1.  disk 1    Start -> A1   
+         2.  disk 1    A1    -> A2   
+         3.  disk 2    Start -> A1   
+         4.  disk 2    A1    -> A4   
+         5.  disk 2    A4    -> A3   
+         6.  disk 1    A2    -> A3   
+         7.  disk 3    Start -> A1   
+         8.  disk 3    A1    -> A2   
+         9.  disk 4    Start -> A1   
+        10.  disk 4    A1    -> Dest 
+        11.  disk 5    Start -> A1   
+        12.  disk 5    A1    -> A4   
+        13.  disk 4    Dest  -> A1   
+        14.  disk 4    A1    -> A4   
+        15.  disk 6    Start -> A1   
+        16.  disk 6    A1    -> Dest 
+        17.  disk 4    A4    -> A1   
+        18.  disk 4    A1    -> Start
+        19.  disk 5    A4    -> A1   
+        20.  disk 5    A1    -> Dest 
+        21.  disk 4    Start -> A1   
+        22.  disk 4    A1    -> Dest 
+        23.  disk 3    A2    -> A1   
+        24.  disk 3    A1    -> Dest 
+        25.  disk 1    A3    -> A2   
+        26.  disk 2    A3    -> A4   
+        27.  disk 2    A4    -> A1   
+        28.  disk 2    A1    -> Dest 
+        29.  disk 1    A2    -> A1   
+        30.  disk 1    A1    -> Dest 
+  [verified: 30 legal moves, all 6 disks stacked in order on Dest]
+
+===============================================================
+ n = 7   moves = 38   (lower bound 2n = 14,  optimum = 36)
+===============================================================
+         1.  disk 1    Start -> A1   
+         2.  disk 1    A1    -> A2   
+         3.  disk 2    Start -> A1   
+         4.  disk 2    A1    -> A4   
+         5.  disk 2    A4    -> A3   
+         6.  disk 1    A2    -> A3   
+         7.  disk 3    Start -> A1   
+         8.  disk 3    A1    -> A4   
+         9.  disk 4    Start -> A1   
+        10.  disk 4    A1    -> A2   
+        11.  disk 3    A4    -> A1   
+        12.  disk 3    A1    -> A2   
+        13.  disk 5    Start -> A1   
+        14.  disk 5    A1    -> Dest 
+        15.  disk 6    Start -> A1   
+        16.  disk 6    A1    -> A4   
+        17.  disk 5    Dest  -> A1   
+        18.  disk 5    A1    -> A4   
+        19.  disk 7    Start -> A1   
+        20.  disk 7    A1    -> Dest 
+        21.  disk 5    A4    -> A1   
+        22.  disk 5    A1    -> Start
+        23.  disk 6    A4    -> A1   
+        24.  disk 6    A1    -> Dest 
+        25.  disk 5    Start -> A1   
+        26.  disk 5    A1    -> Dest 
+        27.  disk 3    A2    -> A1   
+        28.  disk 3    A1    -> Start
+        29.  disk 4    A2    -> A1   
+        30.  disk 4    A1    -> Dest 
+        31.  disk 3    Start -> A1   
+        32.  disk 3    A1    -> Dest 
+        33.  disk 1    A3    -> A2   
+        34.  disk 2    A3    -> A4   
+        35.  disk 2    A4    -> A1   
+        36.  disk 2    A1    -> Dest 
+        37.  disk 1    A2    -> A1   
+        38.  disk 1    A1    -> Dest 
+  [verified: 38 legal moves, all 7 disks stacked in order on Dest]
+
+===============================================================
+ n = 8   moves = 46   (lower bound 2n = 16,  optimum = 44)
+===============================================================
+         1.  disk 1    Start -> A1   
+         2.  disk 1    A1    -> A2   
+         3.  disk 2    Start -> A1   
+         4.  disk 2    A1    -> A4   
+         5.  disk 2    A4    -> A3   
+         6.  disk 1    A2    -> A3   
+         7.  disk 3    Start -> A1   
+         8.  disk 3    A1    -> A4   
+         9.  disk 4    Start -> A1   
+        10.  disk 4    A1    -> Dest 
+        11.  disk 5    Start -> A1   
+        12.  disk 5    A1    -> A2   
+        13.  disk 4    Dest  -> A1   
+        14.  disk 4    A1    -> A2   
+        15.  disk 3    A4    -> A1   
+        16.  disk 3    A1    -> A2   
+        17.  disk 6    Start -> A1   
+        18.  disk 6    A1    -> Dest 
+        19.  disk 7    Start -> A1   
+        20.  disk 7    A1    -> A4   
+        21.  disk 6    Dest  -> A1   
+        22.  disk 6    A1    -> A4   
+        23.  disk 8    Start -> A1   
+        24.  disk 8    A1    -> Dest 
+        25.  disk 6    A4    -> A1   
+        26.  disk 6    A1    -> Start
+        27.  disk 7    A4    -> A1   
+        28.  disk 7    A1    -> Dest 
+        29.  disk 6    Start -> A1   
+        30.  disk 6    A1    -> Dest 
+        31.  disk 3    A2    -> A1   
+        32.  disk 3    A1    -> Start
+        33.  disk 4    A2    -> A1   
+        34.  disk 4    A1    -> A4   
+        35.  disk 5    A2    -> A1   
+        36.  disk 5    A1    -> Dest 
+        37.  disk 4    A4    -> A1   
+        38.  disk 4    A1    -> Dest 
+        39.  disk 3    Start -> A1   
+        40.  disk 3    A1    -> Dest 
+        41.  disk 1    A3    -> A2   
+        42.  disk 2    A3    -> A4   
+        43.  disk 2    A4    -> A1   
+        44.  disk 2    A1    -> Dest 
+        45.  disk 1    A2    -> A1   
+        46.  disk 1    A1    -> Dest 
+  [verified: 46 legal moves, all 8 disks stacked in order on Dest]
+
+===============================================================
+ n = 9   moves = 56   (lower bound 2n = 18,  optimum = 52)
+===============================================================
+         1.  disk 1    Start -> A1   
+         2.  disk 1    A1    -> A2   
+         3.  disk 2    Start -> A1   
+         4.  disk 2    A1    -> Dest 
+         5.  disk 3    Start -> A1   
+         6.  disk 3    A1    -> A4   
+         7.  disk 3    A4    -> A3   
+         8.  disk 2    Dest  -> A1   
+         9.  disk 2    A1    -> A4   
+        10.  disk 2    A4    -> A3   
+        11.  disk 1    A2    -> A3   
+        12.  disk 4    Start -> A1   
+        13.  disk 4    A1    -> A4   
+        14.  disk 5    Start -> A1   
+        15.  disk 5    A1    -> Dest 
+        16.  disk 6    Start -> A1   
+        17.  disk 6    A1    -> A2   
+        18.  disk 5    Dest  -> A1   
+        19.  disk 5    A1    -> A2   
+        20.  disk 4    A4    -> A1   
+        21.  disk 4    A1    -> A2   
+        22.  disk 7    Start -> A1   
+        23.  disk 7    A1    -> Dest 
+        24.  disk 8    Start -> A1   
+        25.  disk 8    A1    -> A4   
+        26.  disk 7    Dest  -> A1   
+        27.  disk 7    A1    -> A4   
+        28.  disk 9    Start -> A1   
+        29.  disk 9    A1    -> Dest 
+        30.  disk 7    A4    -> A1   
+        31.  disk 7    A1    -> Start
+        32.  disk 8    A4    -> A1   
+        33.  disk 8    A1    -> Dest 
+        34.  disk 7    Start -> A1   
+        35.  disk 7    A1    -> Dest 
+        36.  disk 4    A2    -> A1   
+        37.  disk 4    A1    -> Start
+        38.  disk 5    A2    -> A1   
+        39.  disk 5    A1    -> A4   
+        40.  disk 6    A2    -> A1   
+        41.  disk 6    A1    -> Dest 
+        42.  disk 5    A4    -> A1   
+        43.  disk 5    A1    -> Dest 
+        44.  disk 4    Start -> A1   
+        45.  disk 4    A1    -> Dest 
+        46.  disk 1    A3    -> A2   
+        47.  disk 1    A2    -> A1   
+        48.  disk 1    A1    -> Start
+        49.  disk 2    A3    -> A2   
+        50.  disk 3    A3    -> A4   
+        51.  disk 3    A4    -> A1   
+        52.  disk 3    A1    -> Dest 
+        53.  disk 2    A2    -> A1   
+        54.  disk 2    A1    -> Dest 
+        55.  disk 1    Start -> A1   
+        56.  disk 1    A1    -> Dest 
+  [verified: 56 legal moves, all 9 disks stacked in order on Dest]
+
+===============================================================
+ n = 10   moves = 70   (lower bound 2n = 20,  optimum = 62)
+===============================================================
+         1.  disk 1    Start -> A1   
+         2.  disk 1    A1    -> A2   
+         3.  disk 2    Start -> A1   
+         4.  disk 2    A1    -> A4   
+         5.  disk 2    A4    -> A3   
+         6.  disk 1    A2    -> A3   
+         7.  disk 3    Start -> A1   
+         8.  disk 3    A1    -> A4   
+         9.  disk 4    Start -> A1   
+        10.  disk 4    A1    -> Dest 
+        11.  disk 5    Start -> A1   
+        12.  disk 5    A1    -> A2   
+        13.  disk 4    Dest  -> A1   
+        14.  disk 4    A1    -> A2   
+        15.  disk 3    A4    -> A1   
+        16.  disk 3    A1    -> A2   
+        17.  disk 1    A3    -> A2   
+        18.  disk 1    A2    -> A1   
+        19.  disk 2    A3    -> A2   
+        20.  disk 1    A1    -> A2   
+        21.  disk 6    Start -> A1   
+        22.  disk 6    A1    -> Dest 
+        23.  disk 7    Start -> A1   
+        24.  disk 7    A1    -> A4   
+        25.  disk 7    A4    -> A3   
+        26.  disk 6    Dest  -> A1   
+        27.  disk 6    A1    -> A4   
+        28.  disk 6    A4    -> A3   
+        29.  disk 8    Start -> A1   
+        30.  disk 8    A1    -> Dest 
+        31.  disk 9    Start -> A1   
+        32.  disk 9    A1    -> A4   
+        33.  disk 8    Dest  -> A1   
+        34.  disk 8    A1    -> A4   
+        35.  disk 10   Start -> A1   
+        36.  disk 10   A1    -> Dest 
+        37.  disk 8    A4    -> A1   
+        38.  disk 8    A1    -> Start
+        39.  disk 9    A4    -> A1   
+        40.  disk 9    A1    -> Dest 
+        41.  disk 8    Start -> A1   
+        42.  disk 8    A1    -> Dest 
+        43.  disk 6    A3    -> A4   
+        44.  disk 6    A4    -> A1   
+        45.  disk 6    A1    -> Start
+        46.  disk 7    A3    -> A4   
+        47.  disk 7    A4    -> A1   
+        48.  disk 7    A1    -> Dest 
+        49.  disk 6    Start -> A1   
+        50.  disk 6    A1    -> Dest 
+        51.  disk 1    A2    -> A1   
+        52.  disk 1    A1    -> Start
+        53.  disk 2    A2    -> A1   
+        54.  disk 3    A2    -> A3   
+        55.  disk 2    A1    -> A2   
+        56.  disk 2    A2    -> A3   
+        57.  disk 4    A2    -> A1   
+        58.  disk 4    A1    -> A4   
+        59.  disk 5    A2    -> A1   
+        60.  disk 5    A1    -> Dest 
+        61.  disk 4    A4    -> A1   
+        62.  disk 4    A1    -> Dest 
+        63.  disk 2    A3    -> A2   
+        64.  disk 3    A3    -> A4   
+        65.  disk 3    A4    -> A1   
+        66.  disk 3    A1    -> Dest 
+        67.  disk 2    A2    -> A1   
+        68.  disk 2    A1    -> Dest 
+        69.  disk 1    Start -> A1   
+        70.  disk 1    A1    -> Dest 
+  [verified: 70 legal moves, all 10 disks stacked in order on Dest]
+
+--------------------------------------------------------------
+  n    moves   2n (lower bound)   optimum   3^n-1 (path only)
+--------------------------------------------------------------
+  1        2            2               2                 2
+  2        6            4               6                 8
+  3       10            6              10                26
+  4       16            8              16                80
+  5       22           10              22               242
+  6       30           12              28               728
+  7       38           14              36              2186
+  8       46           16              44              6560
+  9       56           18              52             19682
+ 10       70           20              62             59048
