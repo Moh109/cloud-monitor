@@ -24,10 +24,8 @@ derivation, the correctness invariant and the complexity analysis.
 x and m are chosen by an exact dynamic program over (k, src, dst, A).  Because
 |V| = 6 there are only 2**6 = 64 possible peg sets.
 
-Usage:  python3 hanoi_graph.py             solve n = 1..10   (part b)
-        python3 hanoi_graph.py 7           solve n = 7
-        python3 hanoi_graph.py 1 40        solve n = 1..40
-        python3 hanoi_graph.py -s 1 40     move counts only, no move list
+Usage:  python3 hanoi_graph.py        then type the number of disks when asked
+        echo "1 2 3 4 5 6 7 8 9 10 0" | python3 hanoi_graph.py   (part b in one go)
 """
 
 import sys
@@ -218,38 +216,58 @@ def run(n, cost, quiet=False):
     return total
 
 
-def main(argv):
-    args = argv[1:]
-    quiet = False
-    if args and args[0] == "-s":
-        quiet = True
-        args = args[1:]
-    lo, hi = 1, 10
-    if len(args) == 1:
-        lo = hi = int(args[0])
-    elif len(args) >= 2:
-        lo, hi = int(args[0]), int(args[1])
-    if lo < 1 or hi < lo:
-        sys.exit("usage: hanoi_graph.py [-s] [MIN [MAX]]")
+def read_n():
+    """Read one number of disks from standard input; None means 'stop'."""
+    while True:
+        print("\nEnter the number of disks n (0 to quit): ", end="", flush=True)
+        try:
+            text = input()
+        except EOFError:                      # end of input
+            print()
+            return None
+        try:
+            n = int(text.strip())
+        except ValueError:
+            print("  please type a whole number.")
+            continue
+        if n == 0:
+            return None
+        if n < 0:
+            print("  n must be positive.")
+            continue
+        if n > 60:
+            print("  n is too large; please use n <= 60.")
+            continue
+        return n
 
-    cost = plan(hi)
 
+def main():
     print("Towers of Hanoi on G = (V,E)")
     print("  V = {Start, A1, A2, A3, A4, Dest}")
     print("  E = {(Start,A1), (A1,A2), (A2,A3), (A3,A4), (A4,A1), (A1,Dest)}")
 
-    for n in range(lo, hi + 1):
-        run(n, cost, quiet)
+    cost = None
+    planned = 0
+    done = []
 
-    print()
-    print("-" * 62)
-    print("  n    moves   2n (lower bound)   optimum   3^n-1 (path only)")
-    print("-" * 62)
-    for n in range(lo, hi + 1):
-        moves = cost[n][FULL][START][DEST][0]
-        opt = OPTIMUM.get(n, "?")
-        print(f"{n:3d} {moves:8d} {2 * n:12d} {opt:>15} {3 ** n - 1:17d}")
+    while True:
+        n = read_n()
+        if n is None:
+            break
+        if n > planned:                       # (re)build the DP table when needed
+            cost = plan(n)
+            planned = n
+        done.append((n, run(n, cost)))
+
+    if done:
+        print()
+        print("-" * 62)
+        print("  n    moves   2n (lower bound)   optimum   3^n-1 (path only)")
+        print("-" * 62)
+        for n, moves in done:
+            opt = OPTIMUM.get(n, "?")
+            print(f"{n:3d} {moves:8d} {2 * n:12d} {opt:>15} {3 ** n - 1:17d}")
 
 
 if __name__ == "__main__":
-    main(sys.argv)
+    main()

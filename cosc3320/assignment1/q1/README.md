@@ -185,10 +185,8 @@ algorithm and produce byte-identical move lists.
 ### Build and run
 
 ```sh
-python3 hanoi_graph.py            # n = 1..10, every move printed   (part b)
-python3 hanoi_graph.py 7          # just n = 7
-python3 hanoi_graph.py 1 40       # n = 1..40
-python3 hanoi_graph.py -s 1 40    # move counts only
+python3 hanoi_graph.py            # prompts for n on stdin; 0 quits   (part b)
+echo "1 2 3 4 5 6 7 8 9 10 0" | python3 hanoi_graph.py   # part b in one go
 python3 hanoi_bfs.py 8            # exact optima, n = 1..8
 
 make && ./hanoi_graph             # the C version, same output
