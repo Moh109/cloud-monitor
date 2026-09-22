@@ -216,19 +216,33 @@ def run(n, cost, quiet=False):
     return total
 
 
+_pending = deque()                        # numbers already typed on one line
+
+
 def read_n():
-    """Read one number of disks from standard input; None means 'stop'."""
+    """Read one number of disks from standard input; None means 'stop'.
+
+    Several numbers may be given on the same line, so both
+        1 <enter> 2 <enter> 0 <enter>
+    and
+        1 2 0 <enter>
+    work, the way C++'s `cin >> n` does."""
     while True:
-        print("\nEnter the number of disks n (0 to quit): ", end="", flush=True)
+        if not _pending:
+            print("\nEnter the number of disks n (0 to quit): ", end="", flush=True)
+            try:
+                line = input()
+            except EOFError:                  # end of input
+                print()
+                return None
+            _pending.extend(line.split())
+            if not _pending:                  # a blank line: ask again
+                continue
+        word = _pending.popleft()
         try:
-            text = input()
-        except EOFError:                      # end of input
-            print()
-            return None
-        try:
-            n = int(text.strip())
+            n = int(word)
         except ValueError:
-            print("  please type a whole number.")
+            print(f"  '{word}' is not a whole number.")
             continue
         if n == 0:
             return None
