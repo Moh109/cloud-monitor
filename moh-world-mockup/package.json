@@ -1,0 +1,15 @@
+{
+  "name": "moh-world-mockup",
+  "private": true,
+  "type": "module",
+  "description": "Rough 3D mockup of MOH World. Fake data; reads nothing from your vault.",
+  "scripts": {
+    "start": "node serve.mjs"
+  },
+  "dependencies": {
+    "three": "0.186.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
